@@ -1,0 +1,86 @@
+{
+  "queue_version": 1,
+  "model": {
+    "name": "medium",
+    "repo": "cocktailpeanut/stable-audio-3-medium",
+    "conditioning_repo": "cocktailpeanut/stable-audio-3-medium",
+    "model_half": true,
+    "low_memory_load": true,
+    "chunked_decode": true,
+    "sequential_chunked_decode": false,
+    "allow_turing_sdpa_fallback": true,
+    "max_duration_seconds": 380
+  },
+  "generations": [
+    {
+      "id": "best-balanced",
+      "duration_seconds": 380.0,
+      "steps": 14,
+      "cfg_scale": 1.0,
+      "apg_scale": 1.0,
+      "duration_padding_seconds": 6.0,
+      "sampler_type": "pingpong",
+      "seed": 380140,
+      "prompt": "short intro, main beat and hook enter quickly, progressive evolving arrangement, added counter-synth motif, layered moving bass, bigger explosive drop, stronger section variation throughout",
+      "negative_prompt": "poor quality, harsh static, loud buzzing, clipping, noise, extended ambient intro, static repetitive loop, stalled arrangement, flat dynamics, silence",
+      "output_name": "tweak-medium-380s-best-balanced.flac",
+      "flac_subtype": "PCM_24"
+    },
+    {
+      "id": "safer-small-nudge",
+      "duration_seconds": 380.0,
+      "steps": 14,
+      "cfg_scale": 1.0,
+      "apg_scale": 1.0,
+      "duration_padding_seconds": 6.0,
+      "sampler_type": "pingpong",
+      "seed": 380141,
+      "prompt": "shorter intro, stronger early hook, subtle added synth counterline, deeper layered bass, larger drop impact, more variation between sections",
+      "negative_prompt": "poor quality, harsh static, loud buzzing, clipping, noise, extended ambient intro, static repetitive loop, stalled arrangement, flat dynamics, silence",
+      "output_name": "tweak-medium-380s-safer-small-nudge.flac",
+      "flac_subtype": "PCM_24"
+    },
+    {
+      "id": "aggressive-high-power",
+      "duration_seconds": 380.0,
+      "steps": 14,
+      "cfg_scale": 1.0,
+      "apg_scale": 1.0,
+      "duration_padding_seconds": 6.0,
+      "sampler_type": "pingpong",
+      "seed": 380142,
+      "prompt": "no long intro, full-power groove starts quickly, heavier layered sub bass, extra distorted lead synth layer, massive harder drop, escalating intensity and variation throughout",
+      "negative_prompt": "poor quality, harsh static, loud buzzing, clipping, noise, extended ambient intro, static repetitive loop, stalled arrangement, flat dynamics, silence",
+      "output_name": "tweak-medium-380s-aggressive-high-power.flac",
+      "flac_subtype": "PCM_24"
+    },
+    {
+      "id": "progressive-musical",
+      "duration_seconds": 380.0,
+      "steps": 14,
+      "cfg_scale": 1.0,
+      "apg_scale": 1.0,
+      "duration_padding_seconds": 6.0,
+      "sampler_type": "pingpong",
+      "seed": 380143,
+      "prompt": "short cinematic intro, quick transition into the main groove, evolving progressive structure, recurring melodic counter-hook, layered bass movement, bigger climactic drop, clear section changes",
+      "negative_prompt": "poor quality, harsh static, loud buzzing, clipping, noise, extended ambient intro, static repetitive loop, stalled arrangement, flat dynamics, silence",
+      "output_name": "tweak-medium-380s-progressive-musical.flac",
+      "flac_subtype": "PCM_24"
+    },
+    {
+      "id": "video-friendly",
+      "duration_seconds": 380.0,
+      "steps": 14,
+      "cfg_scale": 1.0,
+      "apg_scale": 1.0,
+      "duration_padding_seconds": 6.0,
+      "sampler_type": "pingpong",
+      "seed": 380144,
+      "prompt": "fast-starting arrangement, early recognizable hook, strong beat entry, added secondary synth tone, bigger drop moments, layered bass progression, clear visual-cut section changes",
+      "negative_prompt": "poor quality, harsh static, loud buzzing, clipping, noise, extended ambient intro, static repetitive loop, stalled arrangement, flat dynamics, silence",
+      "output_name": "tweak-medium-380s-video-friendly.flac",
+      "flac_subtype": "PCM_24"
+    }
+  ]
+}

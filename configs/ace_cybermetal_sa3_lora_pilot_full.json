@@ -1,0 +1,70 @@
+{
+  "output_dir": "outputs",
+  "model": {
+    "name": "small-music-base",
+    "hf_repo": "stabilityai/stable-audio-3-small-music-base",
+    "conditioning_repo_id_override": "stabilityai/stable-audio-3-small-music-base",
+    "device": "cpu",
+    "model_half": false,
+    "chunked_decode": true,
+    "max_duration_seconds": 120,
+    "lora_ckpt_paths": [
+      "lora_runs/cybermetal_pilot_10step/20260527-205937/cybermetal_train_step10.safetensors"
+    ],
+    "lora_strength": 0.8
+  },
+  "cpu": {
+    "torch_num_threads": 6,
+    "torch_num_interop_threads": 1
+  },
+  "memory": {
+    "sample_interval_seconds": 0.5,
+    "min_available_ram_gb": 1.5,
+    "max_process_rss_gb": 13.5,
+    "probe_repeats": 1
+  },
+  "defaults": {
+    "steps": 50,
+    "cfg_scale": 7.0,
+    "apg_scale": 1.0,
+    "duration_padding_sec": 6.0,
+    "sampler_type": "euler",
+    "negative_prompt": "vocals, singing, spoken words, rap verse, narrator, clean pop vocal hook, acoustic folk, soft ballad, cheerful ukulele, smooth jazz, orchestral soundtrack, crowd noise, low quality, clipping, thin drums, weak bass, muddy mix"
+  },
+  "full_generation": {
+    "enabled": true,
+    "use_largest_stable_duration": false,
+    "durations_seconds": [100],
+    "steps": 50,
+    "cfg_scale": 7.0,
+    "seed_start": 290000,
+    "variations_per_prompt": 1,
+    "stop_on_first_failure": false
+  },
+  "prompts": [
+    {
+      "id": "cybermetal_fury",
+      "prompt": "TrackType: Music, VocalType: Instrumental, Genre: Industrial Metal, Genre: Techno, Genre: Cyberpunk. A cybermetal electronic transformation anthem for a neon-drenched rave arena, 150 BPM. Glitchy cybernetic pulse intro, bitcrushed startup tones, huge four-on-the-floor kick, distorted double-kick metal drums, aggressive palm-muted guitars, grinding industrial bass, acid synth arpeggios, siren leads, machine percussion, rising tension, massive drop, breakdown, final overdrive climax. Dark futuristic club mix, full-range mastered sound, hard and energetic, no vocals."
+    },
+    {
+      "id": "cybermetal_fury_overclock",
+      "prompt": "TrackType: Music, VocalType: Instrumental, Genre: Cyber Metal, Genre: Industrial Techno. Overclocked cyberpunk transformation music, 152 BPM, system pushed past limits. Relentless mechanical kick pattern, syncopated double-kick drums, distorted chugging guitars, saturated Reese bass, glitch stutters, metallic impacts, warning-alarm synth hooks, unstable modular arpeggios, turbine noise risers, brutal rave drop, high-pressure finale. Sharp transient drums, heavy low end, dense futuristic production, no vocals."
+    },
+    {
+      "id": "cybermetal_fury_apotheosis",
+      "prompt": "TrackType: Music, VocalType: Instrumental, Genre: Trance Metal, Genre: Industrial Techno, Genre: Cyberpunk. Cybermetal apotheosis anthem for a rooftop rave above a megacity, 145 BPM. Uplifting trance supersaw chords collide with heavy distorted metal guitars, pounding kick drum, double-time snare fills, huge sub bass, gated machine percussion, laser synth leads, heroic transformation build, euphoric but dark main drop, cinematic breakdown, final triumphant industrial metal climax. Wide stereo festival mix, no vocals."
+    },
+    {
+      "id": "cybermetal_overdrive_victory",
+      "prompt": "TrackType: Music, VocalType: Instrumental, Genre: Industrial Metal, Genre: Peak-Time Techno. Cyberpunk victory overdrive, peak-time rave chaos, 148 BPM. Massive arena kick, hard techno rumble, chainsaw rhythm guitars, distorted bass guitar layered with synth sub, metallic snare, hydraulic percussion, glitch fills, aggressive lead synth riff, battle-won energy, huge build and drop structure, victorious final section with machine choir-like synth pads but no human vocals. Polished heavy electronic metal production."
+    },
+    {
+      "id": "cybermetal_ascendant_protocol",
+      "prompt": "TrackType: Music, VocalType: Instrumental, Genre: Cyber Metal, Genre: Industrial Techno. Ascendant protocol hymn for the last march through a neon machine city, 132 BPM. Ominous low drones, ritual toms, huge distorted kick, slow grinding guitar riffs, sidechained synth bass, metallic percussion, dark arpeggiated sequencers, cybernetic brass-like synth stabs, tension-building intro, heavy drop, halftime breakdown, final ascension climax. Massive festival system, cinematic and aggressive, no vocals."
+    },
+    {
+      "id": "cybermetal_victory",
+      "prompt": "TrackType: Music, VocalType: Instrumental, Genre: Industrial Metal, Genre: Cyberpunk Techno. End-of-battle transformation victory anthem, 150 BPM. Driving kick, double-kick metal drum fills, down-tuned guitar riffs, distorted industrial bass, bright neon synth lead, glitch percussion, risers and impacts, heroic cybernetic chord progression, high-energy drop, breakdown with mechanical ambience, final victorious rave-metal chorus. Punchy mastered full mix, aggressive but clear, instrumental only."
+    }
+  ]
+}

@@ -1,0 +1,67 @@
+{
+  "output_dir": "outputs",
+  "model": {
+    "name": "small-music-base",
+    "hf_repo": "stabilityai/stable-audio-3-small-music-base",
+    "conditioning_repo_id_override": "stabilityai/stable-audio-3-small-music-base",
+    "device": "cpu",
+    "model_half": false,
+    "chunked_decode": true,
+    "max_duration_seconds": 120
+  },
+  "cpu": {
+    "torch_num_threads": 6,
+    "torch_num_interop_threads": 1
+  },
+  "memory": {
+    "sample_interval_seconds": 0.5,
+    "min_available_ram_gb": 1.5,
+    "max_process_rss_gb": 13.5,
+    "probe_repeats": 1
+  },
+  "defaults": {
+    "steps": 30,
+    "cfg_scale": 6.5,
+    "apg_scale": 1.0,
+    "duration_padding_sec": 6.0,
+    "sampler_type": "euler",
+    "negative_prompt": "low quality, static, white noise, harsh digital noise, clipping, distorted mush, silence, vocals, singing, spoken words, narration, crowd noise"
+  },
+  "full_generation": {
+    "enabled": true,
+    "use_largest_stable_duration": false,
+    "durations_seconds": [30],
+    "steps": 30,
+    "cfg_scale": 6.5,
+    "seed_start": 310000,
+    "variations_per_prompt": 1,
+    "stop_on_first_failure": false
+  },
+  "prompts": [
+    {
+      "id": "doc_style_tech_house_canary",
+      "cfg_scale": 7.0,
+      "prompt": "TrackType: Music, VocalType: Instrumental, Genre: Tech House, Genre: UK Bass, BPM: 124. A triumphant and stylish UK bass-flavoured tech-house tune with the feeling of the last tune played in a DJ set. Pumping four-to-the-floor kick, syncopated 808 bass, gliding emotional synth leads, playful stabs and chopped rhythmic synths, gospel house piano in the drop, euphoric festival energy, polished club mix."
+    },
+    {
+      "id": "dark_peak_time_techno",
+      "cfg_scale": 6.0,
+      "prompt": "TrackType: Music, VocalType: Instrumental, Genre: Techno, Subgenre: Peak-Time Techno, BPM: 132. Dark driving warehouse techno with a tight four-on-the-floor kick, rolling rumble bass, 909 hi-hats, crisp claps, short metallic percussion, restrained acid bassline, pulsing analog synth stabs, tension-building risers, clean drop, hypnotic club arrangement, loud punchy mastered mix."
+    },
+    {
+      "id": "industrial_ebm_club",
+      "cfg_scale": 6.5,
+      "prompt": "TrackType: Music, VocalType: Instrumental, Genre: Industrial, Genre: EBM, Subgenre: Industrial Dance, BPM: 126. Mechanical club track with a heavy drum machine groove, distorted synth bass, metallic percussion hits, gated snare, cold minor-key sequencer pattern, gritty analog synth stabs, factory-floor atmosphere, aggressive but controlled energy, clean low end, punchy dance mix."
+    },
+    {
+      "id": "heavy_rock_electronic_band",
+      "cfg_scale": 7.0,
+      "prompt": "TrackType: Music, VocalType: Instrumental, Format: Band, Genre: Hard Rock, Genre: Electronic Rock, BPM: 138. Instrumental heavy rock track with live-style acoustic drums, distorted electric guitar power chords, tight palm-muted riffing, electric bass guitar locked to the kick, supporting synthesizer bass and dark pads, energetic verse-to-chorus structure, clear guitar tone, punchy modern rock production."
+    },
+    {
+      "id": "dark_synthwave_edm",
+      "cfg_scale": 5.8,
+      "prompt": "TrackType: Music, VocalType: Instrumental, Genre: Synthwave, Genre: EDM, Subgenre: Dark Synth, BPM: 118. Cinematic dark synthwave instrumental with steady electronic drums, deep analog bass, bright arpeggiated synthesizer, wide atmospheric pads, retro-futuristic lead melody, dramatic minor-key chord progression, polished stereo mix, steady groove, clean musical structure."
+    }
+  ]
+}

@@ -1,0 +1,69 @@
+    <div class="tabs">
+        <div class="tab active" data-target="standardInputs">Standard Prompt</div>
+        <div class="tab" data-target="configInput">Paste Config</div>
+    </div>
+    <form id="generateForm">
+        <div id="standardInputs">
+        <label for="modelName">Model</label>
+        <select id="modelName">
+            <option value="small-music" selected>Small Music - 3-part continuation</option>
+            <option value="medium">Medium - experimental direct generation</option>
+        </select>
+        <label for="prompt" style="margin-top:12px;">Prompt</label>
+        <textarea id="prompt" placeholder="Cybermetal electronica, high-speed synth arpeggios, 80s sci-fi robots, nuclear laser leads, industrial drums..."></textarea>
+        <details>
+            <summary>Advanced</summary>
+            <div class="row">
+            <div>
+                <label for="trackId">Track ID</label>
+                <input id="trackId" value="web-cybermetal-suite">
+            </div>
+            <div>
+                <label for="duration">Seconds</label>
+                <input id="duration" type="number" min="10" max="120" step="1" value="120">
+            </div>
+            <div>
+                <label for="steps">Steps</label>
+                <input id="steps" type="number" min="1" max="80" step="1" value="30">
+            </div>
+            <div>
+                <label for="cfgScale">CFG Scale</label>
+                <input id="cfgScale" type="number" min="0" max="10" step="0.1" value="1.0">
+            </div>
+            <div>
+                <label for="initNoise">Init Noise</label>
+                <input id="initNoise" type="number" min="0" max="1" step="0.01" value="0.76">
+            </div>
+            <div>
+                <label for="seed">Seed Start</label>
+                <input id="seed" type="number" min="1" step="1" value="">
+            </div>
+            </div>
+            <div class="actions">
+            <label class="muted" style="margin:0; display:flex; align-items:center; gap:6px;">
+                <input id="continuationMode" type="checkbox" checked style="width:auto;">
+                Use 3-part continuation instead of direct generation
+            </label>
+            </div>
+        </details>
+        </div>
+
+        <div id="configInput" style="display:none;">
+        <label for="rawConfig">Full JSON Config</label>
+        <textarea id="rawConfig" placeholder='{ "tracks": [ { "prompt": "..." } ], ... }'></textarea>
+        <div class="actions" style="margin-top:8px;">
+            <button type="button" class="secondary" id="loadDefaultBtn">Load Current Defaults</button>
+        </div>
+        </div>
+
+        <div class="actions">
+        <button id="generateBtn" type="submit">Generate</button>
+        <button class="secondary" type="button" id="refreshBtn">Refresh</button>
+        <label class="muted" style="margin:0; display:flex; align-items:center; gap:6px;">
+            <input id="autoRefresh" type="checkbox" checked style="width:auto;">
+            Auto-refresh while generating
+        </label>
+        <span class="muted">Only one generation runs at a time.</span>
+        </div>
+    </form>
+    <section class="jobs" id="jobs"></section>

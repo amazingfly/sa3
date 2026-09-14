@@ -1,0 +1,403 @@
+INDEX_HTML = r"""<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SA3 Generator</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #111314;
+      --panel: #191c1d;
+      --panel2: #202526;
+      --text: #f1f4ef;
+      --muted: #aab3ad;
+      --line: #38403d;
+      --accent: #7cd67a;
+      --warn: #f0b35b;
+      --bad: #ef7777;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+    main {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 18px;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 14px;
+    }
+    h1 { margin: 0; font-size: 24px; }
+    .status { color: var(--muted); font-size: 13px; text-align: right; }
+    nav.main-nav { display: flex; gap: 8px; margin-top: 12px; font-size: 14px; }
+    nav.main-nav a {
+      display: inline-flex; align-items: center; min-height: 36px;
+      border: 1px solid var(--line); border-radius: 6px; padding: 8px 12px;
+      color: var(--text); background: var(--panel2); text-decoration: none; font-weight: 700;
+    }
+    nav.main-nav a.active { background: var(--accent); border-color: var(--accent); color: #071007; }
+    
+    .tabs { display: flex; gap: 2px; margin-bottom: -1px; position: relative; z-index: 1; margin-top: 18px; }
+    .tab {
+      padding: 10px 20px; cursor: pointer; background: var(--panel); border: 1px solid var(--line);
+      border-bottom: none; border-radius: 8px 8px 0 0; color: var(--muted); font-weight: 600; font-size: 14px;
+    }
+    .tab.active { background: var(--panel2); color: var(--accent); border-bottom: 1px solid var(--panel2); }
+    
+    form, .job { background: var(--panel); border: 1px solid var(--line); border-radius: 0 8px 8px 8px; padding: 16px; }
+    #generateForm { background: var(--panel2); }
+    
+    label { display: block; color: var(--muted); font-size: 13px; margin-bottom: 7px; }
+    textarea, input, select {
+      width: 100%; background: #0e1011; color: var(--text); border: 1px solid var(--line);
+      border-radius: 6px; padding: 10px 11px; font: inherit;
+    }
+    textarea { min-height: 138px; resize: vertical; line-height: 1.45; }
+    .row { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin-top: 12px; }
+    .actions { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; margin-top: 14px; }
+    button {
+      border: 0; border-radius: 6px; padding: 10px 14px; background: var(--accent);
+      color: #071007; font-weight: 700; cursor: pointer;
+    }
+    button.secondary { background: var(--panel2); color: var(--text); border: 1px solid var(--line); font-weight: 600; }
+    button:disabled { cursor: not-allowed; opacity: 0.55; }
+    details { margin-top: 14px; color: var(--muted); }
+    summary { cursor: pointer; width: max-content; }
+    .jobs { display: grid; gap: 14px; margin-top: 18px; }
+    .job-head { display: flex; justify-content: space-between; gap: 12px; margin-bottom: 10px; }
+    .badge {
+      display: inline-block; border: 1px solid var(--line); border-radius: 999px; padding: 3px 9px;
+      font-size: 12px; color: var(--muted); background: var(--panel2);
+    }
+    .badge.done { color: var(--accent); }
+    .badge.failed { color: var(--bad); }
+    .badge.running { color: var(--warn); }
+    audio { width: 100%; margin: 8px 0; }
+    pre {
+      max-height: 260px; overflow: auto; background: #0b0d0d; border: 1px solid var(--line);
+      border-radius: 6px; padding: 10px; white-space: pre-wrap; color: #c9d0ca; font-size: 12px; line-height: 1.35;
+    }
+    a { color: var(--accent); }
+    .muted { color: var(--muted); }
+    @media (max-width: 760px) {
+      main { padding: 16px; }
+      header { align-items: start; flex-direction: column; }
+      .status { text-align: left; }
+      .row { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+<main>
+  <header>
+    <div>
+      <h1>Stable Audio 3 Suite Generator</h1>
+      <div class="muted">Small Music is the default CPU-safe path; Medium is experimental.</div>
+      <nav class="main-nav"><a class="active" href="/">Generator</a><a href="/library">Library</a></nav>
+    </div>
+    <div class="status" id="serverStatus">Ready</div>
+  </header>
+
+  <div class="tabs">
+    <div class="tab active" data-target="standardInputs">Standard Prompt</div>
+    <div class="tab" data-target="configInput">Paste Config</div>
+  </div>
+
+  <form id="generateForm">
+    <div id="standardInputs">
+      <label for="modelName">Model</label>
+      <select id="modelName">
+        <option value="small-music" selected>Small Music - 3-part continuation</option>
+        <option value="medium">Medium - experimental direct generation</option>
+      </select>
+      <label for="prompt" style="margin-top:12px;">Prompt</label>
+      <textarea id="prompt" placeholder="Cybermetal electronica, high-speed synth arpeggios, 80s sci-fi robots, nuclear laser leads, industrial drums..."></textarea>
+      <details>
+        <summary>Advanced</summary>
+        <div class="row">
+          <div>
+            <label for="trackId">Track ID</label>
+            <input id="trackId" value="web-cybermetal-suite">
+          </div>
+          <div>
+            <label for="duration">Seconds</label>
+            <input id="duration" type="number" min="10" max="120" step="1" value="120">
+          </div>
+          <div>
+            <label for="steps">Steps</label>
+            <input id="steps" type="number" min="1" max="80" step="1" value="30">
+          </div>
+          <div>
+            <label for="cfgScale">CFG Scale</label>
+            <input id="cfgScale" type="number" min="0" max="10" step="0.1" value="1.0">
+          </div>
+          <div>
+            <label for="initNoise">Init Noise</label>
+            <input id="initNoise" type="number" min="0" max="1" step="0.01" value="0.76">
+          </div>
+          <div>
+            <label for="seed">Seed Start</label>
+            <input id="seed" type="number" min="1" step="1" value="">
+          </div>
+        </div>
+        <div class="actions">
+          <label class="muted" style="margin:0; display:flex; align-items:center; gap:6px;">
+            <input id="continuationMode" type="checkbox" checked style="width:auto;">
+            Use 3-part continuation instead of direct generation
+          </label>
+        </div>
+      </details>
+    </div>
+
+    <div id="configInput" style="display:none;">
+      <label for="rawConfig">Full JSON Config</label>
+      <textarea id="rawConfig" placeholder='{ "tracks": [ { "prompt": "..." } ], ... }'></textarea>
+      <div class="actions" style="margin-top:8px;">
+        <button type="button" class="secondary" id="loadDefaultBtn">Load Current Defaults</button>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button id="generateBtn" type="submit">Generate</button>
+      <button class="secondary" type="button" id="refreshBtn">Refresh</button>
+      <label class="muted" style="margin:0; display:flex; align-items:center; gap:6px;">
+        <input id="autoRefresh" type="checkbox" checked style="width:auto;">
+        Auto-refresh while generating
+      </label>
+      <span class="muted">Only one generation runs at a time.</span>
+    </div>
+  </form>
+
+  <section class="jobs" id="jobs"></section>
+</main>
+
+<script>
+const form = document.getElementById('generateForm');
+const jobsEl = document.getElementById('jobs');
+const statusEl = document.getElementById('serverStatus');
+const generateBtn = document.getElementById('generateBtn');
+const autoRefreshEl = document.getElementById('autoRefresh');
+const modelNameEl = document.getElementById('modelName');
+const durationEl = document.getElementById('duration');
+const continuationModeEl = document.getElementById('continuationMode');
+const rawConfigEl = document.getElementById('rawConfig');
+const loadDefaultBtn = document.getElementById('loadDefaultBtn');
+
+let knownJobs = [];
+let pollTimer = null;
+let currentMode = 'standardInputs';
+
+// Tab logic
+document.querySelectorAll('.tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    currentMode = tab.dataset.target;
+    document.getElementById('standardInputs').style.display = currentMode === 'standardInputs' ? 'block' : 'none';
+    document.getElementById('configInput').style.display = currentMode === 'configInput' ? 'block' : 'none';
+  });
+});
+
+loadDefaultBtn.addEventListener('click', async () => {
+  try {
+    const data = await api('/api/defaults');
+    rawConfigEl.value = JSON.stringify(data, null, 2);
+  } catch (err) {
+    alert("Failed to load defaults: " + err.message);
+  }
+});
+
+function esc(s) {
+  return String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));
+}
+
+async function api(path, options) {
+  const res = await fetch(path, options);
+  const data = await res.json();
+  if (!res.ok) throw new Error(data.error || res.statusText);
+  return data;
+}
+
+function ensureJobElement(job) {
+  let el = jobsEl.querySelector(`[data-job-id="${job.id}"]`);
+  if (el) return el;
+  el = document.createElement('article');
+  el.className = 'job';
+  el.dataset.jobId = job.id;
+  el.innerHTML = `
+    <div class="job-head">
+      <div>
+        <strong class="job-title"></strong>
+        <div class="muted job-created"></div>
+      </div>
+      <span class="badge job-status"></span>
+    </div>
+    <div class="job-audio"></div>
+    <div class="muted job-error"></div>
+    <pre class="job-log"></pre>
+  `;
+  jobsEl.prepend(el);
+  return el;
+}
+
+function updateJobElement(job) {
+  const el = ensureJobElement(job);
+  const badgeClass = job.status === 'done' ? 'done' : job.status === 'failed' ? 'failed' : 'running';
+  el.querySelector('.job-title').textContent = job.track_id || job.id;
+  el.querySelector('.job-created').textContent = job.created_at || '';
+  const badge = el.querySelector('.job-status');
+  badge.className = `badge job-status ${badgeClass}`;
+  badge.textContent = job.status;
+  el.querySelector('.job-error').textContent = job.error || '';
+  const log = el.querySelector('.job-log');
+  if (log.textContent !== (job.log_tail || '')) {
+    const wasAtBottom = Math.abs(log.scrollHeight - log.clientHeight - log.scrollTop) < 8;
+    log.textContent = job.log_tail || '';
+    if (wasAtBottom) log.scrollTop = log.scrollHeight;
+  }
+  const audioBox = el.querySelector('.job-audio');
+  if (job.status === 'done' && job.audio_url && !audioBox.querySelector('audio')) {
+    const audio = document.createElement('audio');
+    audio.controls = true;
+    audio.src = job.audio_url;
+    const link = document.createElement('a');
+    link.href = job.audio_url;
+    link.download = '';
+    link.textContent = 'Download OGG';
+    audioBox.append(audio, link);
+    if (job.flac_path) {
+      const flac = document.createElement('span');
+      flac.className = 'muted';
+      flac.textContent = ` FLAC: ${job.flac_path}`;
+      audioBox.append(flac);
+    }
+  }
+}
+
+function renderJobs(jobs) {
+  jobs.slice().reverse().forEach(updateJobElement);
+  generateBtn.disabled = jobs.some(j => j.status === 'queued' || j.status === 'running');
+}
+
+function startPolling() {
+  if (pollTimer === null && autoRefreshEl.checked) {
+    pollTimer = setInterval(refresh, 5000);
+  }
+}
+
+function stopPolling() {
+  if (pollTimer !== null) {
+    clearInterval(pollTimer);
+    pollTimer = null;
+  }
+}
+
+async function refresh() {
+  try {
+    const data = await api('/api/jobs');
+    knownJobs = data.jobs;
+    renderJobs(knownJobs);
+    statusEl.textContent = data.running ? 'Generating' : 'Ready';
+    if (data.running && autoRefreshEl.checked) {
+      startPolling();
+    } else if (!data.running) {
+      stopPolling();
+      if (knownJobs.length && knownJobs[0].status === 'done') {
+        statusEl.textContent = 'Finished';
+      }
+    }
+  } catch (err) {
+    statusEl.textContent = err.message;
+  }
+}
+
+form.addEventListener('submit', async (event) => {
+  event.preventDefault();
+  console.log("Submitting form, mode:", currentMode);
+  let payload;
+  if (currentMode === 'configInput') {
+    const val = rawConfigEl.value.trim();
+    if (!val) {
+      alert("Please paste a JSON config first.");
+      return;
+    }
+    try {
+      payload = { raw_config: JSON.parse(val) };
+    } catch (e) {
+      alert("Invalid JSON config: " + e.message);
+      return;
+    }
+  } else {
+    payload = {
+      prompt: document.getElementById('prompt').value,
+      model: modelNameEl.value,
+      continuation: continuationModeEl.checked,
+      track_id: document.getElementById('trackId').value,
+      duration_seconds: Number(durationEl.value),
+      steps: Number(document.getElementById('steps').value),
+      cfg_scale: Number(document.getElementById('cfgScale').value),
+      init_noise_level: Number(document.getElementById('initNoise').value),
+      seed_start: document.getElementById('seed').value ? Number(document.getElementById('seed').value) : null
+    };
+  }
+  
+  generateBtn.disabled = true;
+  statusEl.textContent = 'Starting...';
+  statusEl.style.color = 'var(--warn)';
+  
+  try {
+    console.log("Sending payload:", payload);
+    const res = await api('/api/generate', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(payload)
+    });
+    console.log("Generate response:", res);
+    statusEl.textContent = 'Generating...';
+    await refresh();
+    startPolling();
+  } catch (err) {
+    console.error("Generate error:", err);
+    statusEl.textContent = 'Error: ' + err.message;
+    statusEl.style.color = 'var(--bad)';
+    alert("Generation failed: " + err.message);
+    generateBtn.disabled = false;
+  }
+});
+
+document.getElementById('refreshBtn').addEventListener('click', refresh);
+modelNameEl.addEventListener('change', () => {
+  if (modelNameEl.value === 'medium') {
+    continuationModeEl.checked = false;
+    durationEl.value = '30';
+    durationEl.max = '380';
+  } else {
+    continuationModeEl.checked = true;
+    durationEl.value = '120';
+    durationEl.max = '120';
+  }
+});
+autoRefreshEl.addEventListener('change', () => {
+  if (autoRefreshEl.checked && knownJobs.some(j => j.status === 'queued' || j.status === 'running')) {
+    startPolling();
+  } else {
+    stopPolling();
+  }
+});
+refresh();
+</script>
+</body>
+</html>
+"""
+
+LIBRARY_HTML = r"""<!doctype html>

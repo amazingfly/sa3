@@ -1,0 +1,39 @@
+{
+  "mode": "direct",
+  "output_dir": "outputs",
+  "music_library_dir": "musicLibrary",
+  "model": {
+    "name": "medium",
+    "hf_repo": "cocktailpeanut/stable-audio-3-medium",
+    "conditioning_repo_id_override": "cocktailpeanut/stable-audio-3-medium",
+    "device": "cpu",
+    "model_half": false,
+    "chunked_decode": true,
+    "max_duration_seconds": 380
+  },
+  "cpu": {
+    "torch_num_threads": 6,
+    "torch_num_interop_threads": 1
+  },
+  "memory": {
+    "sample_interval_seconds": 0.5,
+    "min_available_ram_gb": 1.5,
+    "max_process_rss_gb": 13.5
+  },
+  "generation": {
+    "duration_seconds": 30,
+    "steps": 8,
+    "cfg_scale": 1.0,
+    "apg_scale": 1.0,
+    "duration_padding_sec": 6.0,
+    "sampler_type": "pingpong",
+    "seed_start": 380000,
+    "negative_prompt": "poor quality, harsh static, loud buzzing, clipping, noise, vocals, singing, spoken words, narrator, acoustic folk, soft ballad"
+  },
+  "tracks": [
+    {
+      "id": "medium_cybermetal_probe",
+      "prompt": "TrackType: Music, VocalType: Instrumental, Genre: Cyberpunk Techno, Genre: Electro Industrial, Genre: Synth Metal, 154 BPM. High-speed cybermetal electronica with 80s science-fiction synthesizers, robot percussion, nuclear laser lead synths, hard electronic kick, aggressive industrial bass, neon arpeggios, cybernetic alarms, metallic drum fills, dark rave energy, polished instrumental club mix."
+    }
+  ]
+}

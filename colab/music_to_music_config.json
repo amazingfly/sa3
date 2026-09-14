@@ -1,0 +1,53 @@
+{
+  "pass_name": "2nndPass",
+  "model": {
+    "name": "medium",
+    "repo": "cocktailpeanut/stable-audio-3-medium",
+    "conditioning_repo": "cocktailpeanut/stable-audio-3-medium",
+    "model_half": true,
+    "low_memory_load": true,
+    "chunked_decode": true,
+    "sequential_chunked_decode": false,
+    "decode_chunk_size": 64,
+    "decode_overlap": 32,
+    "allow_turing_sdpa_fallback": true,
+    "max_duration_seconds": 380
+  },
+  "paths": {
+    "input_dir": "/content/sa3/musicLibrary/flac",
+    "flac_dir": "/content/outputs/2nndPass/flac",
+    "ogg_dir": "/content/outputs/2nndPass/ogg",
+    "report_dir": "/content/outputs/2nndPass/reports"
+  },
+  "source": {
+    "mode": "google_drive_folder",
+    "folder_url": "https://drive.google.com/drive/folders/1ofsf05bCvVZQSf5N88szahgPumfRt_CL?usp=sharing",
+    "folder_id": "1ofsf05bCvVZQSf5N88szahgPumfRt_CL",
+    "verify_with_local_manifest": true
+  },
+  "local": {
+    "input_dir": "musicLibrary/flac/yes",
+    "flac_dir": "musicLibrary/2nndPass/flac",
+    "ogg_dir": "musicLibrary/2nndPass/ogg",
+    "report_dir": "outputs/colab_music_to_music/2nndPass/reports",
+    "log_dir": "outputs/colab_music_to_music/2nndPass"
+  },
+  "source_pattern": "*.flac",
+  "skip_existing": true,
+  "ogg_quality": 6,
+  "generation": {
+    "prompt": "Music-to-music enhancement pass. Preserve the original track's tempo, key, structure, melody, groove, arrangement, and core identity. Significantly increase sonic density and power: make it much heavier, darker, and more intense while staying cohesive. Add richer layered synth textures, more screaming supersaw and arpeggiated leads, deeper rumbling multi-layered sub bass, crushing punchier kicks and industrial percussion, more chaotic noisy synth stabs and aggressive textures, wider and more cinematic atmosphere, bigger epic build-ups and harder drops, relentless forward drive, and a dense wall-of-sound production. Push it harder and darker overall with more energy and intensity. High quality polished dark futurepop / industrial rave / cybermetal master.",
+    "negative_prompt": "new song, different tempo, different key, changed melody, changed lyrics, excessive new vocals, muddy bass, weak kick, thin bass, clipping, harsh static, noise, distortion artifacts, phase problems, washed out mix, silence",
+    "duration_seconds": "source",
+    "duration_policy": "clamp",
+    "steps": 12,
+    "cfg_scale": 1.0,
+    "apg_scale": 1.0,
+    "duration_padding_seconds": 6.0,
+    "sampler_type": "pingpong",
+    "seed_start": 620000,
+    "init_noise_level": 0.27,
+    "flac_subtype": "PCM_24",
+    "ogg_quality": 6
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "output_dir": "outputs",
+  "music_library_dir": "musicLibrary",
+  "model": {
+    "name": "small-music",
+    "hf_repo": "cocktailpeanut/stable-audio-3-small-music",
+    "conditioning_repo_id_override": "cocktailpeanut/stable-audio-3-small-music",
+    "device": "cpu",
+    "model_half": false,
+    "chunked_decode": true,
+    "max_duration_seconds": 120
+  },
+  "cpu": {
+    "torch_num_threads": 6,
+    "torch_num_interop_threads": 1
+  },
+  "memory": {
+    "sample_interval_seconds": 0.5,
+    "min_available_ram_gb": 1.5,
+    "max_process_rss_gb": 13.5
+  },
+  "generation": {
+    "duration_seconds": 120,
+    "steps": 30,
+    "cfg_scale": 1.0,
+    "apg_scale": 1.0,
+    "duration_padding_sec": 6.0,
+    "sampler_type": "pingpong",
+    "overlap_anchor_seconds": 8,
+    "seed_start": 350000,
+    "negative_prompt": "poor quality, harsh static, loud buzzing, clipping, muddy mix, weak bass, thin drums, acoustic folk, soft ballad, happy pop, soft piano, orchestral movie trailer, ambient-only background music"
+  },
+  "track": {
+    "id": "robot_nuclear_laser_suite",
+    "title": "Robot Nuclear Laser Suite",
+    "acts": [
+      {
+        "id": "beginning",
+        "prompt": "TrackType: Music, VocalType: Dark female goth-industrial vocal with vocoder doubles and whispered backing chants, Genre: Cyberpunk Industrial, Genre: Dark Synthwave, Genre: Goth Club, Genre: Industrial Dance, BPM: 138. Beginning act of a 360-second cyberpunk industrial song, cinematic but structured like a real music track. Ominous machine intro, distant metal impacts, neon megacity rain, reactor hum, cybernetic sirens, 80s sci-fi analog arpeggios, pulsing distorted Reese bass, sine sub-bass, punchy electronic kick, gated factory snare, hydraulic piston thumps, chain rattles, cold pads, FM laser bleeps, controlled cyber-metal synth stabs. Verse section with dark melodic vocal lead, confident and hypnotic, slightly distorted, not clean pop. Lyrics for the verse: Neon rain on a broken street, chrome hearts move to the factory beat, black light burns where the angels fell, we dance in the sparks of a city in hell. Build toward a pre-chorus with rising arpeggiated synths and increasing drums. Pre-chorus lyric fragments: Turn the sirens higher, feed the wire fire, metal bones awake tonight. Heavy, sexy, dystopian, mechanical, danceable."
+      },
+      {
+        "id": "middle",
+        "prompt": "TrackType: Music, VocalType: Dark female goth-industrial vocal with layered chorus vocals, vocoder doubles, whispered chants, Genre: Industrial Techno, Genre: Cyberpunk Goth Club, Genre: Electro Industrial, Genre: Darksynth, BPM: 148. Middle act of a 360-second cyberpunk industrial song, the goth nightclub inside a cyberpunk war factory. This is the speed-up and main club section: harder kick, faster hi-hats, syncopated 16th-note machine percussion, pounding industrial dance groove, huge chorus/drop, metallic anvil hits, steel pipe impacts, pneumatic piston hits, cannon-like booms, factory-door slams, chain rattles, nuclear siren risers, acid bass sequence, distorted sawtooth riffs, FM growls, detuned saw leads, modular sequencer arpeggios, glitch edits, bitcrushed noise bursts, electrical sparks. Layered low end: sine sub-bass for weight, distorted Reese bass for movement, 808-style low tail, punchy kick transient, sidechained warehouse rumble, metallic impact layers. Main chorus should be memorable and repeated like a real song hook. Chorus lyrics: We are the signal in the static, we are the ghosts inside the machine, hearts like thunder, chrome and panic, dancing where the dark turns green. Keep it heavy, musical, violent but danceable, more nightclub track than background score."
+      },
+      {
+        "id": "end",
+        "prompt": "TrackType: Music, VocalType: Dark female goth-industrial vocal with big final chorus, vocoder doubles, distorted harmony layers, whispered backing chants, Genre: Cyberpunk EDM, Genre: Electro Industrial, Genre: Synthwave Metal, Genre: Industrial Rock, BPM: 146. Final act of a 360-second cyberpunk industrial song, explosive reactor-core climax and final chorus. Start with an industrial breakdown: steel impacts, hammer hits, hydraulic doors, machine rhythms, crushed electronic drums, metal scrapes, gated reverb snares, cannon blasts, alarm tones, reactor overload risers. Bridge lyrics: Hammer down, the gates ignite, steel and shadow, pulse and light, no more silence, no more sleep, wake the city underneath. Then return to the biggest final chorus with massive layered bass, blazing nuclear laser melody, dark supersaw chords, distorted Reese bass, fast analog bassline, hard machine kick, metal-like synth stabs, neon sirens, robotic drum fills, and triumphant but dark robot uprising energy. Repeat and intensify the chorus lyrics: We are the signal in the static, we are the ghosts inside the machine, hearts like thunder, chrome and panic, dancing where the dark turns green. Ending should feel powerful, polished, structured, club-ready, cinematic but still a real song with vocals, hook, bassline progression, chorus, and final climax."
+      }
+    ]
+  }
+}

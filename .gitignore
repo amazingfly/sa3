@@ -1,0 +1,36 @@
+# Environments and runtime artifacts
+.venv/
+.venv-check/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.cache/
+.local/
+*.egg-info/
+build/
+dist/
+*.log
+*.pid
+.env
+.env.*
+!.env.example
+# External media stores (patterns also ignore symlinks)
+/outputs
+/musicLibrary
+/web_runs
+/source
+/training_data
+/lora_runs
+/generated_images
+/images_log.json
+/packet_log.txt
+# Old image workflow; owned by images after migration
+/sd15Files
+# Credentials and model weights
+/auth/
+client_secret*.json
+*token*.json
+*.safetensors
+*.ckpt
+*.gguf

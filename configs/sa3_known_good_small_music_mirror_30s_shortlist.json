@@ -1,0 +1,54 @@
+{
+  "output_dir": "outputs",
+  "model": {
+    "name": "small-music",
+    "hf_repo": "cocktailpeanut/stable-audio-3-small-music",
+    "conditioning_repo_id_override": "cocktailpeanut/stable-audio-3-small-music",
+    "device": "cpu",
+    "model_half": false,
+    "chunked_decode": true,
+    "max_duration_seconds": 120
+  },
+  "cpu": {
+    "torch_num_threads": 6,
+    "torch_num_interop_threads": 1
+  },
+  "memory": {
+    "sample_interval_seconds": 0.5,
+    "min_available_ram_gb": 1.5,
+    "max_process_rss_gb": 13.5,
+    "probe_repeats": 1
+  },
+  "defaults": {
+    "steps": 8,
+    "cfg_scale": 1.0,
+    "apg_scale": 1.0,
+    "duration_padding_sec": 6.0,
+    "sampler_type": "pingpong",
+    "negative_prompt": "poor quality, harsh static, loud buzzing, clipping, noise"
+  },
+  "full_generation": {
+    "enabled": true,
+    "use_largest_stable_duration": false,
+    "durations_seconds": [30],
+    "steps": 8,
+    "cfg_scale": 1.0,
+    "seed_start": 321000,
+    "variations_per_prompt": 1,
+    "stop_on_first_failure": false
+  },
+  "prompts": [
+    {
+      "id": "reddit_synthwave_night_drive",
+      "prompt": "synthwave, night drive, 1985"
+    },
+    {
+      "id": "pinokio_lofi_study",
+      "prompt": "lo-fi hip hop beat, warm vinyl texture, 90 BPM, relaxed study background"
+    },
+    {
+      "id": "official_house_festival",
+      "prompt": "House music that encapsulates the feeling of being at a festival in the sunny weather with all your friends 124 BPM"
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SA3 Library</title>
+  <link rel="stylesheet" href="style.css?v=2">
+</head>
+<body>
+<main>
+  <header>
+    <div>
+      <h1>Media Library</h1>
+      <div class="muted">Generated images and audio tracks.</div>
+      <nav class="main-nav"><a href="/">Suite</a><a class="active" href="/library">Library</a></nav>
+    </div>
+    <div class="status" id="pageStatus">Ready</div>
+  </header>
+
+  <div class="tabs">
+    <div class="tab active" data-target="imageLibrary">Image Gallery</div>
+    <div class="tab" data-target="audioLibrary">Audio Library</div>
+  </div>
+
+  <div id="imageLibrary" class="view active">
+    <div id="galleryContainer">
+        <div class="gallery-tap-area left" id="tapPrev"></div>
+        <div class="gallery-tap-area center" id="tapFullscreen"></div>
+        <div class="gallery-tap-area right" id="tapNext"></div>
+    </div>
+    <div class="gallery-nav">
+        <button id="likeBtn">❤️ Like</button>
+        <button id="trashBtn" class="secondary">🗑️ Delete</button>
+        <a id="galleryDownloadBtn" class="button" download>💾 Download</a>
+        <button id="slideshowBtn" class="secondary">▶️ Slideshow</button>
+    </div>
+  </div>
+
+  <div id="audioLibrary" class="view">
+    <section class="panel">
+      <strong>Cast Playlist</strong>
+      <div class="muted" id="castStatus">Speaker group alpha is the default target.</div>
+      <div class="controls">
+        <select id="deviceSelect">
+          <option value="speaker group alpha" selected>speaker group alpha</option>
+        </select>
+        <button id="playAllBtn" type="button">Play All</button>
+        <button id="playSelectedBtn" type="button" class="secondary">Play Selected</button>
+        <button id="stopCastBtn" type="button" class="secondary">Stop Cast</button>
+        <button id="refreshDevicesBtn" type="button" class="secondary">Refresh Devices</button>
+        <button id="refreshLibraryBtn" type="button" class="secondary">Refresh Library</button>
+      </div>
+    </section>
+
+    <section class="tracks" id="tracks"></section>
+  </div>
+</main>
+<script src="script.js?v=7"></script>
+</body>
+</html>

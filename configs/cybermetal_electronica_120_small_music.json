@@ -1,0 +1,67 @@
+{
+  "output_dir": "outputs",
+  "audio_format": "flac",
+  "model": {
+    "name": "small-music",
+    "hf_repo": "cocktailpeanut/stable-audio-3-small-music",
+    "conditioning_repo_id_override": "cocktailpeanut/stable-audio-3-small-music",
+    "device": "cpu",
+    "model_half": false,
+    "chunked_decode": true,
+    "max_duration_seconds": 120
+  },
+  "cpu": {
+    "torch_num_threads": 6,
+    "torch_num_interop_threads": 1
+  },
+  "memory": {
+    "sample_interval_seconds": 0.5,
+    "min_available_ram_gb": 1.5,
+    "max_process_rss_gb": 13.5,
+    "probe_repeats": 1
+  },
+  "defaults": {
+    "steps": 30,
+    "cfg_scale": 1.0,
+    "apg_scale": 1.0,
+    "duration_padding_sec": 6.0,
+    "sampler_type": "pingpong",
+    "negative_prompt": "poor quality, harsh static, loud buzzing, clipping, noise, vocals, singing, spoken words, narrator, acoustic folk, soft ballad"
+  },
+  "full_generation": {
+    "enabled": true,
+    "use_largest_stable_duration": false,
+    "durations_seconds": [120],
+    "steps": 30,
+    "cfg_scale": 1.0,
+    "seed_start": 340000,
+    "variations_per_prompt": 1,
+    "stop_on_first_failure": false
+  },
+  "prompts": [
+    {
+      "id": "neon_robot_laser_fury",
+      "prompt": "TrackType: Music, VocalType: Instrumental, Genre: Electro Industrial, Genre: Cyberpunk Techno, Genre: Synthwave Metal, BPM: 156. High-speed 80s science-fiction battle rave with robotic drum machines, neon arpeggiators, nuclear laser synth leads, vocoder-like robot textures without vocals, huge analog bass sequence, gated snares, distorted cyber-metal guitar accents, bright arcade alarms, plasma cannon risers, four-on-the-floor kick, double-time electronic tom fills, chrome factory percussion, aggressive but musical club mix."
+    },
+    {
+      "id": "overclocked_android_factory",
+      "prompt": "TrackType: Music, VocalType: Instrumental, Genre: Industrial Dance, Genre: Electro, Genre: High-Speed Techno, BPM: 158. Overclocked android assembly line soundtrack with fast synthetic kick drums, robotic bass sequencer, laser-zap synth stabs, metallic EBM percussion, 1980s sci-fi workstation bleeps, distorted sawtooth lead melody, nuclear reactor hum, cybernetic alarms, hard sidechained bass, short guitar-like synth riffs, relentless machine groove, sharp bright electronic production."
+    },
+    {
+      "id": "atomic_synth_chase",
+      "prompt": "TrackType: Music, VocalType: Instrumental, Genre: Dark Synthwave, Genre: Electro Techno, Genre: Industrial Rock, BPM: 150. Atomic hovercar chase through a neon megacity, packed with 80s sci-fi synthesizers, fast arpeggiated bass, laser cannon lead synth, gated LinnDrum-style snare, pounding electronic kick, robot servo percussion, bright FM bells, distorted synth-guitar power chords, nuclear warning siren risers, cinematic breakdown, explosive final chase drop, polished retro-futuristic mix."
+    },
+    {
+      "id": "mecha_rave_overdrive",
+      "prompt": "TrackType: Music, VocalType: Instrumental, Genre: Big Beat, Genre: Industrial Techno, Genre: Cyberpunk EDM, BPM: 148. Giant robot rave overdrive with thunderous breakbeats, hard techno kick, acid bass sequence, laser-grid synth hook, 80s VHS science-fiction pads, mechanical clanks, vocoder robot choir texture as a synth pad only, distorted electronic bass guitar, fast snare fills, huge build-ups, nuclear reactor drop, bright high-energy festival mix."
+    },
+    {
+      "id": "reactor_core_ascension",
+      "prompt": "TrackType: Music, VocalType: Instrumental, Genre: Electro Industrial, Genre: Trance, Genre: Synth Metal, BPM: 142. Reactor-core ascension anthem with pulsing supersaw chords, fast cybernetic arpeggios, robot marching percussion, huge synthetic kick, nuclear laser lead melody, metallic gated snares, low distorted Reese bass, sci-fi control-room bleeps, chugging synth-guitar rhythm, cinematic 80s pads, dark euphoric breakdown, triumphant machine-city finale."
+    },
+    {
+      "id": "laser_grid_victory",
+      "prompt": "TrackType: Music, VocalType: Instrumental, Genre: Electro, Genre: Peak-Time Techno, Genre: Cyberpunk Rock, BPM: 154. Laser-grid victory music for a robot uprising in a neon arcade fortress. Fast analog bassline, bright 80s sci-fi synth lead, robotic drum machine fills, hard four-on-the-floor kick, distorted electronic guitar stabs, FM synth sparks, nuclear siren sweeps, machine percussion, high-speed rave drop, heroic cybernetic chord progression, clean powerful instrumental mix."
+    }
+  ]
+}

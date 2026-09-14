@@ -1,0 +1,51 @@
+{
+  "output_dir": "outputs",
+  "music_library_dir": "musicLibrary",
+  "model": {
+    "name": "small-music",
+    "hf_repo": "cocktailpeanut/stable-audio-3-small-music",
+    "conditioning_repo_id_override": "cocktailpeanut/stable-audio-3-small-music",
+    "device": "cpu",
+    "model_half": false,
+    "chunked_decode": true,
+    "max_duration_seconds": 120
+  },
+  "cpu": {
+    "torch_num_threads": 6,
+    "torch_num_interop_threads": 1
+  },
+  "memory": {
+    "sample_interval_seconds": 0.5,
+    "min_available_ram_gb": 1.5,
+    "max_process_rss_gb": 13.5
+  },
+  "generation": {
+    "duration_seconds": 120,
+    "steps": 30,
+    "cfg_scale": 1.0,
+    "apg_scale": 1.0,
+    "duration_padding_sec": 6.0,
+    "sampler_type": "pingpong",
+    "overlap_anchor_seconds": 8,
+    "seed_start": 350000,
+    "negative_prompt": "poor quality, harsh static, loud buzzing, clipping, noise, vocals, singing, spoken words, narrator, acoustic folk, soft ballad"
+  },
+  "track": {
+    "id": "robot_nuclear_laser_suite",
+    "title": "Robot Nuclear Laser Suite",
+    "acts": [
+      {
+        "id": "beginning",
+        "prompt": "TrackType: Music, VocalType: Instrumental, Genre: Electro Industrial, Genre: Dark Synthwave, Genre: Cyberpunk Techno, BPM: 150. Beginning act of a 360-second robot nuclear laser suite. Neon megacity ignition, 80s sci-fi analog arpeggios, fast electronic kick, robotic percussion, bright FM laser bleeps, cold pads, rising reactor hum, controlled cyber-metal synth-guitar stabs, cinematic build into a hard machine groove, no vocals."
+      },
+      {
+        "id": "middle",
+        "prompt": "TrackType: Music, VocalType: Instrumental, Genre: Industrial Techno, Genre: Electro, Genre: Synth Metal, BPM: 156. Middle act of a 360-second robot nuclear laser suite. The machine war escalates: faster laser cannon synth leads, robotic drum fills, nuclear siren risers, acid bass sequence, distorted sawtooth riffs, metallic factory percussion, huge rave drop, dense 80s arcade science-fiction energy, aggressive instrumental club mix."
+      },
+      {
+        "id": "end",
+        "prompt": "TrackType: Music, VocalType: Instrumental, Genre: Cyberpunk EDM, Genre: Electro Industrial, Genre: Synthwave Metal, BPM: 154. Final act of a 360-second robot nuclear laser suite. Triumphant robot uprising finale, blazing nuclear laser melody, heroic 80s sci-fi supersaw chords, fast analog bassline, hard machine kick, metal-like synth stabs, explosive reactor-core climax, victorious neon ending, polished powerful instrumental mix, no vocals."
+      }
+    ]
+  }
+}

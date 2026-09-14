@@ -1,0 +1,74 @@
+{
+  "output_dir": "outputs",
+  "model": {
+    "name": "small-music",
+    "hf_repo": "stabilityai/stable-audio-3-small-music",
+    "device": "cpu",
+    "model_half": false,
+    "chunked_decode": true,
+    "max_duration_seconds": 120
+  },
+  "cpu": {
+    "torch_num_threads": 6,
+    "torch_num_interop_threads": 1
+  },
+  "memory": {
+    "sample_interval_seconds": 0.5,
+    "min_available_ram_gb": 1.5,
+    "max_process_rss_gb": 13.5,
+    "probe_repeats": 2
+  },
+  "defaults": {
+    "steps": 8,
+    "cfg_scale": 1.0,
+    "apg_scale": 1.0,
+    "duration_padding_sec": 6.0,
+    "sampler_type": null,
+    "negative_prompt": "vocals, singing, spoken words, clean pop vocals, acoustic folk, soft ballad, cheerful ukulele, smooth jazz, crowd noise, low quality, clipping, harsh digital distortion"
+  },
+  "smoke": {
+    "duration_seconds": 5,
+    "steps": 2,
+    "cfg_scale": 0.8,
+    "seed": 260527
+  },
+  "probe": {
+    "durations_seconds": [5, 15, 30, 45, 60, 90, 120],
+    "steps": 4,
+    "cfg_scale": 0.9,
+    "seed_start": 261000,
+    "prompt_id": "neon_foundry"
+  },
+  "full_generation": {
+    "enabled": true,
+    "use_largest_stable_duration": true,
+    "durations_seconds": [30, 60, 90, 120],
+    "steps": 12,
+    "cfg_scale": 1.15,
+    "seed_start": 270000,
+    "variations_per_prompt": 2,
+    "stop_on_first_failure": false
+  },
+  "prompts": [
+    {
+      "id": "neon_foundry",
+      "prompt": "Cyberpunk industrial techno metal instrumental, 138 BPM, distorted machine drums, syncopated double-kick metal rhythm, grinding palm-muted guitars, acid bassline, cold modular synth arps, neon dystopian club atmosphere, no vocals, aggressive mix, cinematic breakdowns"
+    },
+    {
+      "id": "arcology_riot",
+      "prompt": "Dark cyberpunk industrial metal techno track, 145 BPM, mechanical kick drum, metallic percussion, detuned seven-string guitar riffs, distorted Reese bass, alarm-like synth lead, warehouse rave energy, dystopian megacity riot mood, instrumental only"
+    },
+    {
+      "id": "chrome_crucible",
+      "prompt": "Heavy industrial techno metal instrumental, 132 BPM, crushing kick and snare, chugging down-tuned guitars, sequenced modular synth bass, glitch edits, hydraulic factory ambience, cybernetic tension, wide stereo, no vocals"
+    },
+    {
+      "id": "black_ice_drive",
+      "prompt": "Cyberpunk chase music blending industrial techno and metal, 150 BPM, relentless four-on-the-floor kick, double-time metal drums, abrasive guitar stabs, distorted arpeggiated synths, sub-heavy bass, rain-soaked neon highway atmosphere, instrumental"
+    },
+    {
+      "id": "machine_temple",
+      "prompt": "Slow-building cyber industrial metal techno, 124 BPM, ominous machine drones, ritualistic toms, distorted guitar swells, pulsing sidechain synth bass, aggressive drop, cold futuristic cathedral ambience, no singing"
+    }
+  ]
+}

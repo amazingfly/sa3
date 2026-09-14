@@ -1,0 +1,94 @@
+{
+  "model": {
+    "name": "small-music-base",
+    "hf_repo": "stabilityai/stable-audio-3-small-music-base",
+    "conditioning_repo_id_override": "stabilityai/stable-audio-3-small-music-base",
+    "device": "cpu",
+    "model_precision": "float32"
+  },
+  "cpu": {
+    "torch_num_threads": 6,
+    "torch_num_interop_threads": 1
+  },
+  "memory": {
+    "sample_every_steps": 1,
+    "min_available_ram_gb": 1.5,
+    "max_process_rss_gb": 13.5
+  },
+  "dataset": {
+    "source_dir": "source",
+    "prepared_dir": "training_data/cybermetal_lora/data",
+    "link_mode": "symlink",
+    "default_caption": "TrackType: Music, VocalType: Instrumental. Cyberpunk industrial techno metal, distorted guitars, mechanical drums, dark electronic bass, hard club energy, aggressive futuristic production.",
+    "files": [
+      {
+        "source": "ColdChromeIntoTheMetadrome.mp3",
+        "caption": "TrackType: Music, VocalType: Instrumental. Cold cyberpunk industrial techno metal, chrome synth bass, mechanical kick drums, dark arpeggiated sequencers, distorted guitar texture, metallic percussion, neon warehouse atmosphere."
+      },
+      {
+        "source": "CombichristGetYourBodyBeat.mp3",
+        "caption": "TrackType: Music, VocalType: Instrumental. Aggressive EBM industrial dance metal, hard four-on-the-floor kick, distorted bass, machine percussion, harsh club energy, cyberpunk rave pressure."
+      },
+      {
+        "source": "DannyBluXAestheticPerfectionXMorisBlakTheAmericanDreamOfficialAudio.mp3",
+        "caption": "TrackType: Music, VocalType: Instrumental. Dark industrial electro rock, pulsing synth bass, heavy processed drums, gritty cyberpunk club production, distorted electronic hooks, tense neon atmosphere."
+      },
+      {
+        "source": "DeathpixieGasOnFire.mp3",
+        "caption": "TrackType: Music, VocalType: Instrumental. Chaotic cyber industrial metal, burning synth distortion, heavy drums, abrasive guitar layers, glitch percussion, frantic dark club momentum."
+      },
+      {
+        "source": "DeathpixieWalkingNightmareOfficialVisualizer.mp3",
+        "caption": "TrackType: Music, VocalType: Instrumental. Nightmare cybermetal, ominous industrial rhythm, distorted bass, heavy electronic drums, dark mechanical ambience, aggressive futuristic drive."
+      },
+      {
+        "source": "ImperativeReactionDiminishMe.mp3",
+        "caption": "TrackType: Music, VocalType: Instrumental. Melodic industrial electro metal, driving kick, dark synth progression, distorted bass, tight electronic drums, cyberpunk club intensity."
+      },
+      {
+        "source": "ImperativeReactionTimeDoesntCare.mp3",
+        "caption": "TrackType: Music, VocalType: Instrumental. Dark industrial dance rock, steady mechanical groove, pulsing bass synth, metallic percussion, cybernetic melodic tension, heavy electronic mix."
+      },
+      {
+        "source": "IndieDancePylotARaceAgainstTimeMonstercatRelease.mp3",
+        "caption": "TrackType: Music, VocalType: Instrumental. High-speed cyberpunk techno rock, racing arpeggios, hard kick, urgent synth bass, distorted rhythmic layers, festival-sized futuristic energy."
+      },
+      {
+        "source": "MotionlessInWhiteCyberhexOfficialVisualizerVideo.mp3",
+        "caption": "TrackType: Music, VocalType: Instrumental. Cyber metal anthem, down-tuned guitar aggression, industrial electronics, pounding drums, glitch accents, dark futuristic arena energy."
+      },
+      {
+        "source": "Tsunami.mp3",
+        "caption": "TrackType: Music, VocalType: Instrumental. Massive industrial techno surge, heavy low-end wave, hard kick, distorted synth bass, metallic impacts, cyberpunk rave climax."
+      }
+    ]
+  },
+  "smoke": {
+    "steps": 1,
+    "duration_seconds": 5,
+    "rank": 4,
+    "adapter_type": "lora",
+    "base_precision": null,
+    "lr": 0.0001,
+    "batch_size": 1,
+    "num_workers": 0,
+    "seed": 260527,
+    "checkpoint_every": 1,
+    "log_every": 1,
+    "save_dir": "lora_runs/cybermetal_smoke"
+  },
+  "training": {
+    "steps": 200,
+    "duration_seconds": 12,
+    "rank": 8,
+    "adapter_type": "dora-rows",
+    "base_precision": null,
+    "lr": 0.0001,
+    "batch_size": 1,
+    "num_workers": 0,
+    "seed": 260528,
+    "checkpoint_every": 50,
+    "log_every": 1,
+    "save_dir": "lora_runs/cybermetal_small_lora"
+  }
+}

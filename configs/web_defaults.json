@@ -1,0 +1,57 @@
+{
+  "mode": "continuation",
+  "output_dir": "outputs",
+  "music_library_dir": "musicLibrary",
+  "model": {
+    "name": "small-music",
+    "hf_repo": "cocktailpeanut/stable-audio-3-small-music",
+    "conditioning_repo_id_override": "cocktailpeanut/stable-audio-3-small-music",
+    "device": "cpu",
+    "model_half": false,
+    "chunked_decode": true,
+    "max_duration_seconds": 120.0
+  },
+  "cpu": {
+    "torch_num_threads": 6,
+    "torch_num_interop_threads": 1
+  },
+  "memory": {
+    "sample_interval_seconds": 0.5,
+    "min_available_ram_gb": 1.5,
+    "max_process_rss_gb": 13.5
+  },
+  "generation": {
+    "duration_seconds": 120.0,
+    "steps": 30,
+    "cfg_scale": 1.0,
+    "apg_scale": 1.0,
+    "duration_padding_sec": 6.0,
+    "sampler_type": "pingpong",
+    "init_noise_level": 0.76,
+    "seed_start": null,
+    "negative_prompt": "poor quality, harsh static, loud buzzing, clipping, noise, vocals, singing, spoken words, narrator, acoustic folk, soft ballad"
+  },
+  "acts": [
+    {
+      "id": "beginning"
+    },
+    {
+      "id": "middle"
+    },
+    {
+      "id": "end"
+    }
+  ],
+  "standard_prompts": {
+    "base_prefix": "TrackType: Music, VocalType: Instrumental. This is part of a coherent 360-second cybermetal electronica suite.",
+    "beginning": "Act role: beginning 120 seconds. Establish the main tempo, key, drum kit, synth palette, bass tone, and cybermetal identity. Build from intro into the first full-power groove, with 80s science-fiction synths, robots, neon circuitry, nuclear laser effects, and no vocals.",
+    "middle": "Act role: middle 120 seconds, generated as a direct continuation of the same track. Preserve the previous section's tempo, key, drum kit, bass tone, synth patches, stereo image, and mastering. Escalate the arrangement with more high-speed synth arpeggios, robot-machine percussion, nuclear laser lead lines, harder drops, and denser 80s sci-fi electronica energy. Avoid abrupt style changes and keep it instrumental.",
+    "end": "Act role: final 120 seconds, generated as a direct continuation of the same track. Preserve the previous section's tempo, key, drum kit, bass tone, synth patches, stereo image, and mastering. Deliver the climactic finale with blazing laser synth hooks, robot uprising energy, reactor-core risers, cybermetal stabs, a final overdrive drop, and a resolved ending. Avoid abrupt style changes and keep it instrumental."
+  },
+  "tracks": [
+    {
+      "id": "web-cybermetal-suite",
+      "prompt": "Cybermetal electronica, high-speed synth arpeggios, 80s sci-fi robots, nuclear laser leads, industrial drums"
+    }
+  ]
+}

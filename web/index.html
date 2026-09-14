@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SA3 Suite</title>
+  <link rel="stylesheet" href="style.css?v=2">
+</head>
+<body>
+<main>
+  <header>
+    <div>
+      <h1>Stable Audio 3 & SD 1.5 Suite</h1>
+      <nav class="main-nav"><a class="active" href="/">Suite</a><a href="/library">Library</a></nav>
+    </div>
+    <div class="status" id="serverStatus">Ready</div>
+  </header>
+
+  <div class="tabs">
+    <div class="tab active" data-target="imageView">Image Gen</div>
+    <div class="tab" data-target="audioView">Audio Gen</div>
+  </div>
+
+  <div id="imageView" class="view active">
+    <h3>SD 1.5 Image Generator</h3>
+    <div class="tabs">
+        <div class="tab active" data-target="sdManual">Single Manual</div>
+        <div class="tab" data-target="sdFull">Full Generation</div>
+    </div>
+    
+    <div id="sdManual" class="sd-view" style="margin-top:12px;">
+        <label for="sdPrompt">Prompt</label>
+        <textarea id="sdPrompt" placeholder="Dystopian cyborg female in dynamic battle pose..."></textarea>
+        <button id="sdManualBtn" style="margin-top:12px;">Generate & Resize</button>
+    </div>
+
+    <div id="sdFull" class="sd-view" style="display:none; margin-top:12px;">
+        <div class="row">
+            <div>
+                <label for="sdCount">Prompts Count</label>
+                <input id="sdCount" type="number" min="1" max="200" value="100">
+            </div>
+            <div>
+                <label for="sdSteps">Steps</label>
+                <input id="sdSteps" type="number" value="50">
+            </div>
+            <div>
+                <label for="sdResize">Resize</label>
+                <select id="sdResize">
+                    <option value="1080p" selected>1080p</option>
+                    <option value="720p">720p</option>
+                    <option value="480p">480p</option>
+                </select>
+            </div>
+        </div>
+        <label for="gemmaPrompt" style="margin-top:12px;">Gemma4 Generation Prompt</label>
+        <textarea id="gemmaPrompt" placeholder="generate an image generation prompt with many colorfull details for a distopian cyborg femail in dynamic battle poses with futuristic combat and a neon dystopian setting"></textarea>
+        <button id="sdFullBtn" style="margin-top:12px;">Launch Full Pipeline</button>
+    </div>
+
+    <div id="sdOutputViewer" style="display:none; margin-top:20px; border-top: 1px solid var(--line); padding-top: 15px;">
+        <h4>Latest Result</h4>
+        <div id="sdLatestResult" style="text-align:center;"></div>
+        <div class="actions" style="justify-content:center;">
+            <button id="sdLikeBtn">❤️ Like</button>
+            <button id="sdTrashBtn" class="secondary">🗑️ Delete</button>
+            <a id="sdDownloadBtn" class="button" download>💾 Download</a>
+        </div>
+    </div>
+
+    <div id="sdJobs" class="jobs" style="margin-top:20px;"></div>
+  </div>
+
+  <div id="audioView" class="view">
+    <div class="tabs">
+        <div class="tab active" data-target="standardInputs">Standard Prompt</div>
+        <div class="tab" data-target="configInput">Paste Config</div>
+    </div>
+    <form id="generateForm">
+        <div id="standardInputs">
+        <label for="modelName">Model</label>
+        <select id="modelName">
+            <option value="small-music" selected>Small Music - 3-part continuation</option>
+            <option value="medium">Medium - Colab GPU direct FLAC</option>
+        </select>
+        <div id="modelHelp" class="muted model-help">
+            Small Music uses the existing local continuation workflow.
+        </div>
+        <label for="prompt" style="margin-top:12px;">Prompt</label>
+        <textarea id="prompt" placeholder="Cybermetal electronica, high-speed synth arpeggios, 80s sci-fi robots, nuclear laser leads, industrial drums..."></textarea>
+        <details>
+            <summary>Advanced</summary>
+            <div class="row">
+            <div>
+                <label for="trackId">Output Name</label>
+                <input id="trackId" value="web-cybermetal-suite">
+            </div>
+            <div>
+                <label for="duration">Seconds</label>
+                <input id="duration" type="number" min="10" max="380" step="1" value="120">
+            </div>
+            <div>
+                <label for="steps">Steps</label>
+                <input id="steps" type="number" min="1" max="80" step="1" value="30">
+            </div>
+            <div>
+                <label for="cfgScale">CFG Scale</label>
+                <input id="cfgScale" type="number" min="0" max="10" step="0.1" value="1.0">
+            </div>
+            <div>
+                <label for="initNoise">Init Noise</label>
+                <input id="initNoise" type="number" min="0" max="1" step="0.01" value="0.76">
+            </div>
+            <div>
+                <label for="seed">Seed Start</label>
+                <input id="seed" type="number" min="1" step="1" value="">
+            </div>
+            </div>
+            <div class="actions">
+            <label class="muted" style="margin:0; display:flex; align-items:center; gap:6px;">
+                <input id="continuationMode" type="checkbox" checked style="width:auto;">
+                Use 3-part continuation instead of direct generation
+            </label>
+            </div>
+        </details>
+        </div>
+
+        <div id="configInput" style="display:none;">
+        <label for="rawConfig">Full JSON Config</label>
+        <textarea id="rawConfig" placeholder='Legacy web config with tracks, or native Colab config with model.name="medium" and generation.prompt'></textarea>
+        <div class="actions" style="margin-top:8px;">
+            <button type="button" class="secondary" id="loadDefaultBtn">Load Current Defaults</button>
+        </div>
+        </div>
+
+        <section class="queue-panel" id="mediumQueuePanel">
+        <div class="queue-head">
+            <div>
+            <strong>Medium Colab Queue</strong>
+            <div class="muted">Queued tracks share one setup and one loaded model.</div>
+            </div>
+            <button class="secondary" type="button" id="clearQueueBtn">Clear Queue</button>
+        </div>
+        <div id="mediumQueue" class="queue-list">
+            <div class="muted">Queue is empty.</div>
+        </div>
+        </section>
+
+        <div class="actions">
+        <button id="generateBtn" type="submit">Generate</button>
+        <button id="generateQueueBtn" type="button">Generate Queue</button>
+        <button class="secondary" type="button" id="refreshBtn">Refresh</button>
+        <label class="muted" style="margin:0; display:flex; align-items:center; gap:6px;">
+            <input id="autoRefresh" type="checkbox" checked style="width:auto;">
+            Auto-refresh while generating
+        </label>
+        <span class="muted">One Colab queue runs at a time.</span>
+        </div>
+    </form>
+    <section class="jobs" id="jobs"></section>
+  </div>
+
+<script src="script.js?v=7"></script>
+</body>
+</html>
