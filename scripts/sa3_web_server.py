@@ -1,6 +1,17 @@
 #!/usr/bin/env python3
 from __future__ import annotations
 
+# Load centralized workstation defaults; explicit environment/CLI values win.
+import sys as _workspace_sys
+from pathlib import Path as _WorkspacePath
+for _workspace_root in _WorkspacePath(__file__).resolve().parents:
+    if (_workspace_root / "media_workspace").is_dir():
+        _workspace_sys.path.insert(0, str(_workspace_root))
+        break
+from media_workspace.config import apply_environment as _apply_workspace
+_apply_workspace()
+
+
 import argparse
 import html
 import importlib.util
@@ -22,11 +33,11 @@ from urllib.parse import quote, unquote, urlparse
 
 # --- Constants & Paths ---
 ROOT = Path(__file__).resolve().parents[1]
-WEB_RUNS = ROOT / "web_runs"
+WEB_RUNS = Path(os.environ.get("SA3_WEB_RUNS_DIR", str(ROOT / "web_runs")))
 CONFIG_DIR = WEB_RUNS / "configs"
 LOG_DIR = WEB_RUNS / "logs"
-OGG_DIR = ROOT / "musicLibrary" / "ogg"
-FLAC_DIR = ROOT / "musicLibrary" / "flac"
+OGG_DIR = Path(os.environ.get("SA3_LIBRARY_DIR", str(ROOT / "musicLibrary"))) / "ogg"
+FLAC_DIR = Path(os.environ.get("SA3_LIBRARY_DIR", str(ROOT / "musicLibrary"))) / "flac"
 WEB_DEFAULTS_PATH = ROOT / "configs" / "web_defaults.json"
 SD15_REPO = Path(os.environ.get("SD15_REPO", "/mnt/storage/projects/agentic/images")).resolve()
 SD15_CONFIG_PATH = SD15_REPO / "config.json"

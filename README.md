@@ -54,3 +54,9 @@ uv pip install --python .venv-check/bin/python -r requirements-dev.txt
 Audio acquisition is available in `scripts/download_audio.py`; install
 `requirements-download.txt` separately if using it. It writes downloads to the
 current directory, so run it from your local `source/` directory.
+
+See [workflow support status](docs/workflows.md). Use `python scripts/workspace.py doctor`
+to check centralized checkout/interpreter configuration, and
+`python scripts/workspace.py run --component sa3 -- {python} SCRIPT [ARGS]`
+to launch with shared paths. Workspace setup is documented in
+[media-pipeline](https://github.com/amazingfly/media-pipeline/blob/main/docs/workspace.md).

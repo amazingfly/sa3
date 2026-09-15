@@ -1,0 +1,47 @@
+{
+  "version": 1,
+  "status_definition": "supported = maintained entry point with CPU checks; GPU access/deployment is not implied. experimental = specialized recipe. archived = preserved, not the default.",
+  "workflows": [
+    {
+      "id": "cpu-audio",
+      "status": "supported",
+      "entrypoints": [
+        "scripts/run_sa3_workflow.py"
+      ],
+      "requirements": "SA3 weights, CPU runtime"
+    },
+    {
+      "id": "medium-colab",
+      "status": "supported",
+      "entrypoints": [
+        "colab/run_colab.sh",
+        "scripts/run_sa3_medium_colab.py"
+      ],
+      "requirements": "Authenticated Colab"
+    },
+    {
+      "id": "audio-library",
+      "status": "supported",
+      "entrypoints": [
+        "scripts/sa3_web_server.py"
+      ],
+      "requirements": "FFmpeg; optional casting"
+    },
+    {
+      "id": "lora-training",
+      "status": "experimental",
+      "entrypoints": [
+        "scripts/train_sa3_lora.py"
+      ],
+      "requirements": "Training data and model access"
+    },
+    {
+      "id": "previous-ui",
+      "status": "archived",
+      "entrypoints": [
+        "archive/"
+      ],
+      "requirements": "Reference only"
+    }
+  ]
+}

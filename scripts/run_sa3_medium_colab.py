@@ -3,6 +3,17 @@
 
 from __future__ import annotations
 
+# Load centralized workstation defaults; explicit environment/CLI values win.
+import sys as _workspace_sys
+from pathlib import Path as _WorkspacePath
+for _workspace_root in _WorkspacePath(__file__).resolve().parents:
+    if (_workspace_root / "media_workspace").is_dir():
+        _workspace_sys.path.insert(0, str(_workspace_root))
+        break
+from media_workspace.config import apply_environment as _apply_workspace
+_apply_workspace()
+
+
 import argparse
 import hashlib
 import json
@@ -402,11 +413,11 @@ def run(
         return 0
 
     first_source = source_configs[0]
-    output_root = Path(str(first_source.get("output_dir") or ROOT / "outputs"))
+    output_root = Path(str(first_source.get("output_dir") or os.environ.get("SA3_OUTPUTS_DIR") or ROOT / "outputs"))
     if not output_root.is_absolute():
         output_root = ROOT / output_root
     library_root = Path(
-        str(first_source.get("music_library_dir") or ROOT / "musicLibrary")
+        str(first_source.get("music_library_dir") or os.environ.get("SA3_LIBRARY_DIR") or ROOT / "musicLibrary")
     )
     if not library_root.is_absolute():
         library_root = ROOT / library_root
